@@ -29,14 +29,25 @@ protected:
 	ABuildingBase *employment;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Villager Properties");
 	ABuildingHouse *house;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Villager Properties");
-	bool isWorking;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Villager Properties");
-	bool hasNeedsStatisfied;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Villager Properties");
-	bool isSatisfyingNeeds;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Villager Properties");
+	bool isBusy;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Villager Properties");
+	bool hasAlreadyWorked;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Villager Properties");
+	bool villagerTier;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Villager Properties|Villager Needs");
+	int32 sleepNeed;
+
+	UFUNCTION(BlueprintNativeEvent)
 	void GoToWork();
+
+	UFUNCTION(BlueprintNativeEvent)
+	void GoToSatisfySleep();
+
+	void ReduceNeeds();
 
 public:
 	// Called every frame
@@ -47,5 +58,6 @@ public:
 
 private:
 	void SearchForEmployment();
+	void SearchForHouse();
 	void SatisfyNeeds();
 };
